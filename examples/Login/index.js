@@ -4,7 +4,9 @@ import {
   Text,
   StyleSheet,
   Dimensions,
-  TextInput
+  TextInput,
+  Platform,
+  StatusBar
 } from 'react-native'
 import {runTiming} from './runTiming'
 import Animated from 'react-native-reanimated'
@@ -32,6 +34,7 @@ const {
 } = Animated
 
 const {width, height} = Dimensions.get('window')
+const isAndroid = Platform.OS === 'android'
 
 class App extends React.Component {
   constructor() {
@@ -74,9 +77,13 @@ class App extends React.Component {
       extrapolate: Extrapolate.CLAMP
     })
 
+    this.bgYRange = isAndroid
+      ? -height / 3 - 15
+      : -height / 3 - 50
+
     this.bgY = interpolate(this.buttonOpacity, {
       inputRange: [0, 1],
-      outputRange: [-height / 3 - 50, 0]
+      outputRange: [this.bgYRange, 0]
     })
 
     this.textInputZindex = interpolate(this.buttonOpacity, {
@@ -107,6 +114,10 @@ class App extends React.Component {
     })
   }
 
+  navigate = () => {
+    this.props.navigation.navigate('PanGesture')
+  }
+
   render() {
     return (
       <View
@@ -115,6 +126,10 @@ class App extends React.Component {
           backgroundColor: 'white',
           justifyContent: 'flex-end'
         }}>
+        <StatusBar
+          translucent
+          backgroundColor={'transparent'}
+        />
         <Animated.View
           style={{
             ...StyleSheet.absoluteFill,
@@ -171,7 +186,8 @@ class App extends React.Component {
               style={{
                 fontSize: 20,
                 fontWeight: 'bold',
-                color: 'white'
+                color: 'white',
+                width: width * 0.54
               }}>
               SIGN IN WITH FACEBOOK
             </Text>
@@ -217,15 +233,18 @@ class App extends React.Component {
               placeholderTextColor="black"
               style={styles.textInput}
             />
-            <Animated.View style={styles.button}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 'bold'
-                }}>
-                SIGN IN
-              </Text>
-            </Animated.View>
+            <TapGestureHandler
+              onHandlerStateChange={this.navigate}>
+              <Animated.View style={styles.button}>
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold'
+                  }}>
+                  SIGN IN
+                </Text>
+              </Animated.View>
+            </TapGestureHandler>
           </Animated.View>
         </View>
       </View>
@@ -253,6 +272,7 @@ const styles = StyleSheet.create({
     },
     shadowColor: 'black',
     shadowOpacity: 0.2,
+    elevation: 3,
     borderColor: 'rgba(0,0,0,.1)',
     borderWidth: 0.5
   },
@@ -281,6 +301,7 @@ const styles = StyleSheet.create({
     },
     shadowColor: 'black',
     shadowOpacity: 0.2,
+    elevation: 3,
     borderColor: 'rgba(0,0,0,.1)',
     borderWidth: 0.5
   }

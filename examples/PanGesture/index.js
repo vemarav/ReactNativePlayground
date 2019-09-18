@@ -1,19 +1,28 @@
 import React from 'react'
-import {View, StyleSheet, Animated} from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  StatusBar
+} from 'react-native'
 
 import {
   PanGestureHandler,
-  State
+  State,
+  TapGestureHandler
 } from 'react-native-gesture-handler'
 
 class App extends React.Component {
   constructor() {
     super()
     this.translateX = new Animated.Value(0)
+    this.translateY = new Animated.Value(0)
     this.onGestureEvent = Animated.event([
       {
         nativeEvent: {
-          translationX: this.translateX
+          translationX: this.translateX,
+          translationY: this.translateY
         }
       }
     ])
@@ -25,22 +34,58 @@ class App extends React.Component {
         toValue: 0,
         duration: 500
       }).start()
+      Animated.timing(this.translateY, {
+        toValue: 0,
+        duration: 500
+      }).start()
     }
+  }
+
+  goBack = () => {
+    this.props.navigation.pop()
   }
 
   render() {
     return (
-      <View style={{...styles.container}}>
-        <PanGestureHandler
-          onGestureEvent={this.onGestureEvent}
-          onHandlerStateChange={this.onHandlerStateChange}>
-          <Animated.View
+      <View style={{flex: 1, paddingTop: 35}}>
+        <StatusBar
+          barStyle={'dark-content'}
+          translucent
+          backgroundColor={'transparent'}
+        />
+        <TapGestureHandler
+          onHandlerStateChange={this.goBack}>
+          <View
             style={{
-              ...styles.box,
-              transform: [{translateX: this.translateX}]
-            }}
-          />
-        </PanGestureHandler>
+              paddingHorizontal: 16,
+              borderBottomColor: 'grey',
+              borderBottomWidth: 1,
+              paddingVertical: 16
+            }}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 'bold'
+              }}>{`◁ Go Back Simon`}</Text>
+          </View>
+        </TapGestureHandler>
+        <View style={{...styles.container}}>
+          <PanGestureHandler
+            onGestureEvent={this.onGestureEvent}
+            onHandlerStateChange={
+              this.onHandlerStateChange
+            }>
+            <Animated.View
+              style={{
+                ...styles.box,
+                transform: [
+                  {translateX: this.translateX},
+                  {translateY: this.translateY}
+                ]
+              }}
+            />
+          </PanGestureHandler>
+        </View>
       </View>
     )
   }
@@ -49,12 +94,18 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   box: {
     height: 100,
     width: 100,
-    backgroundColor: '#256645'
+    borderRadius: 50,
+    backgroundColor: '#0275d8',
+    shadowOffset: {width: 5, height: 5},
+    shadowColor: '#000',
+    shadowOpacity: 0.5,
+    elevation: 10
   }
 })
 

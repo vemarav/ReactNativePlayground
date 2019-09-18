@@ -28,9 +28,6 @@ target 'ReactNativePlayground' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   # third-party apis
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
-  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
   target 'ReactNativePlaygroundTests' do
     inherit! :search_paths

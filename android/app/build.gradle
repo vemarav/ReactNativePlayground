@@ -188,9 +188,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-svg')
-    implementation project(':react-native-reanimated')
-    implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

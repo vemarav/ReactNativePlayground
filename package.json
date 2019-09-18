@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "ios": "react-native run-ios",
+    "android": "react-native run-android",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -13,7 +14,10 @@
     "react-native": "0.60.5",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-reanimated": "^1.2.0",
-    "react-native-svg": "^9.9.4"
+    "react-native-screens": "^2.0.0-alpha.3",
+    "react-native-svg": "^9.9.4",
+    "react-navigation": "^4.0.5",
+    "react-navigation-stack": "^1.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
