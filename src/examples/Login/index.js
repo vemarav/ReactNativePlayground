@@ -33,7 +33,8 @@ const {
   concat
 } = Animated
 
-const {width, height} = Dimensions.get('window')
+let {width, height} = Dimensions.get('screen')
+height = height - 84
 const isAndroid = Platform.OS === 'android'
 
 class App extends React.Component {
@@ -140,7 +141,7 @@ class App extends React.Component {
               <Circle r={height + 50} cx={width / 2} />
             </ClipPath>
             <Image
-              href={require('../../images/bg.jpg')}
+              href={require('../../../images/bg.jpg')}
               width={width}
               height={height + 50}
               preserveAspectRatio="xMidYMid slice"
@@ -186,8 +187,7 @@ class App extends React.Component {
               style={{
                 fontSize: 20,
                 fontWeight: 'bold',
-                color: 'white',
-                width: width * 0.54
+                color: 'white'
               }}>
               SIGN IN WITH FACEBOOK
             </Text>

@@ -9,8 +9,7 @@ import {
 
 import {
   PanGestureHandler,
-  State,
-  TapGestureHandler
+  State
 } from 'react-native-gesture-handler'
 
 class App extends React.Component {
@@ -53,22 +52,6 @@ class App extends React.Component {
           translucent
           backgroundColor={'transparent'}
         />
-        <TapGestureHandler
-          onHandlerStateChange={this.goBack}>
-          <View
-            style={{
-              paddingHorizontal: 16,
-              borderBottomColor: 'grey',
-              borderBottomWidth: 1,
-              paddingVertical: 16
-            }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold'
-              }}>{`◁ Go Back Simon`}</Text>
-          </View>
-        </TapGestureHandler>
         <View style={{...styles.container}}>
           <PanGestureHandler
             onGestureEvent={this.onGestureEvent}
