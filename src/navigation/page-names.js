@@ -1,5 +1,6 @@
 export default {
   Login: 'Login',
   Home: 'Home',
-  PanGesture: 'Pan Gesture'
+  PanGesture: 'Pan Gesture',
+  Pie: 'Pie'
 }
