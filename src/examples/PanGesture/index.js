@@ -46,6 +46,7 @@ class App extends React.Component {
             <Animated.View
               style={{
                 ...styles.box,
+                backgroundColor: ColorUtil.random(),
                 transform: [
                   {translateX: this.translateX},
                   {translateY: this.translateY}
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 50,
-    backgroundColor: ColorUtil.random(),
     shadowOffset: {width: 5, height: 5},
     shadowColor: '#000',
     shadowOpacity: 0.5,

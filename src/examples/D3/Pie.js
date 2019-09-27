@@ -52,9 +52,13 @@ class Pie extends React.Component {
     super()
     this.animatedAngle = new Animated.Value(0.01)
     this.state = {isExpanded: false}
-    this.data = [20, 30, 50]
+    this.data = [10, 20, 30, 40, 10, 24, 45]
     this.colors = []
-    this.data.map(_ => this.colors.push(randomColor()))
+    this.total = 0
+    this.data.map(n => {
+      this.total += n
+      return this.colors.push(randomColor())
+    })
   }
 
   animate = () => {
@@ -79,6 +83,7 @@ class Pie extends React.Component {
   render() {
     const endAngle = Animated.multiply(this.animatedAngle, Math.PI)
     const svg = {height: width * 0.6, width: width * 0.6}
+    const total = 0
     return (
       <View style={styles.container}>
         <View style={styles.pie}>
@@ -112,8 +117,13 @@ class Pie extends React.Component {
             ))}
           </View>
         </View>
+        <Text style={styles.total}>Total: {this.total}</Text>
         <TouchableOpacity onPress={this.animate}>
-          <View style={{backgroundColor: randomColor(), ...styles.button}}>
+          <View
+            style={{
+              backgroundColor: this.colors[0],
+              ...styles.button
+            }}>
             <Text style={styles.buttonText}>
               {this.state.isExpanded ? 'Shrink' : 'Expand'}
             </Text>
@@ -147,13 +157,20 @@ const styles = StyleSheet.create({
   },
   button: {
     padding: 16,
-    width: width,
+    marginHorizontal: 16,
+    borderRadius: 50,
     justifyContent: 'center'
   },
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  total: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 14
   }
 })
 
