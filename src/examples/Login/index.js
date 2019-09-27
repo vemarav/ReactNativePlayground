@@ -5,8 +5,7 @@ import {
   StyleSheet,
   Dimensions,
   TextInput,
-  Platform,
-  StatusBar
+  Platform
 } from 'react-native'
 import {runTiming} from './runTiming'
 import Animated from 'react-native-reanimated'
@@ -28,7 +27,6 @@ const {
 
 let {width, height} = Dimensions.get('screen')
 height = height - 84
-const isAndroid = Platform.OS === 'android'
 
 class App extends React.Component {
   constructor() {
@@ -65,7 +63,7 @@ class App extends React.Component {
       extrapolate: Extrapolate.CLAMP
     })
 
-    this.bgYRange = isAndroid ? -height / 3 - 15 : -height / 3 - 50
+    this.bgYRange = -height / 3 - 50
 
     this.bgY = interpolate(this.buttonOpacity, {
       inputRange: [0, 1],
