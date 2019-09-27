@@ -1,21 +1,15 @@
 import React from 'react'
-import {
-  View,
-  ScrollView,
-  Text,
-  TouchableOpacity
-} from 'react-native'
+import {View, ScrollView, Text, TouchableOpacity} from 'react-native'
 import PageNames from '../../navigation/page-names'
 
 class Home extends React.Component {
   _renderItem = pageNameKey => {
     const PageName = PageNames[pageNameKey]
+    if (PageName === PageNames.Home) return null
     return (
       <TouchableOpacity
         key={`screen-${pageNameKey}`}
-        onPress={() =>
-          this.props.navigation.navigate(PageName)
-        }>
+        onPress={() => this.props.navigation.navigate(PageName)}>
         <View
           style={{
             padding: 20,

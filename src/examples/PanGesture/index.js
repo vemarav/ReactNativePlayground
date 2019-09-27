@@ -1,16 +1,8 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  Animated,
-  StatusBar
-} from 'react-native'
+import {View, StyleSheet, Animated, StatusBar} from 'react-native'
+import ColorUtil from '../../utils/ColorUtil'
 
-import {
-  PanGestureHandler,
-  State
-} from 'react-native-gesture-handler'
+import {PanGestureHandler, State} from 'react-native-gesture-handler'
 
 class App extends React.Component {
   constructor() {
@@ -55,9 +47,7 @@ class App extends React.Component {
         <View style={{...styles.container}}>
           <PanGestureHandler
             onGestureEvent={this.onGestureEvent}
-            onHandlerStateChange={
-              this.onHandlerStateChange
-            }>
+            onHandlerStateChange={this.onHandlerStateChange}>
             <Animated.View
               style={{
                 ...styles.box,
@@ -84,7 +74,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 50,
-    backgroundColor: '#0275d8',
+    backgroundColor: ColorUtil.random(),
     shadowOffset: {width: 5, height: 5},
     shadowColor: '#000',
     shadowOpacity: 0.5,
