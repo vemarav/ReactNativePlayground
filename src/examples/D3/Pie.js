@@ -113,7 +113,7 @@ class Pie extends React.Component {
           </View>
         </View>
         <TouchableOpacity onPress={this.animate}>
-          <View style={styles.button}>
+          <View style={{backgroundColor: randomColor(), ...styles.button}}>
             <Text style={styles.buttonText}>
               {this.state.isExpanded ? 'Shrink' : 'Expand'}
             </Text>
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   button: {
-    backgroundColor: randomColor(),
     padding: 16,
     width: width,
     justifyContent: 'center'
