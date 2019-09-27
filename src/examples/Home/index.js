@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, ScrollView, Text, TouchableOpacity} from 'react-native'
 import PageNames from '../../navigation/page-names'
+import {isAndroid} from '../../utils/common'
 
 class Home extends React.Component {
   _renderItem = pageNameKey => {
@@ -30,7 +31,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1, marginTop: 36}}>
+      <View style={{flex: 1, marginTop: isAndroid ? 0 : 36}}>
         <View
           style={{
             padding: 20,

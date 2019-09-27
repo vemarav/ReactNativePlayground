@@ -39,11 +39,6 @@ class App extends React.Component {
   render() {
     return (
       <View style={{flex: 1, paddingTop: 35}}>
-        <StatusBar
-          barStyle={'dark-content'}
-          translucent
-          backgroundColor={'transparent'}
-        />
         <View style={{...styles.container}}>
           <PanGestureHandler
             onGestureEvent={this.onGestureEvent}

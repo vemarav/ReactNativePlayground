@@ -10,15 +10,8 @@ import {
 } from 'react-native'
 import {runTiming} from './runTiming'
 import Animated from 'react-native-reanimated'
-import {
-  TapGestureHandler,
-  State
-} from 'react-native-gesture-handler'
-import Svg, {
-  Image,
-  Circle,
-  ClipPath
-} from 'react-native-svg'
+import {TapGestureHandler, State} from 'react-native-gesture-handler'
+import Svg, {Image, Circle, ClipPath} from 'react-native-svg'
 
 const {
   Value,
@@ -48,10 +41,7 @@ class App extends React.Component {
           block([
             cond(
               eq(state, State.END),
-              set(
-                this.buttonOpacity,
-                runTiming(new Clock(), 1, 0)
-              )
+              set(this.buttonOpacity, runTiming(new Clock(), 1, 0))
             )
           ])
       }
@@ -63,10 +53,7 @@ class App extends React.Component {
           block([
             cond(
               eq(state, State.END),
-              set(
-                this.buttonOpacity,
-                runTiming(new Clock(), 0, 1)
-              )
+              set(this.buttonOpacity, runTiming(new Clock(), 0, 1))
             )
           ])
       }
@@ -78,9 +65,7 @@ class App extends React.Component {
       extrapolate: Extrapolate.CLAMP
     })
 
-    this.bgYRange = isAndroid
-      ? -height / 3 - 15
-      : -height / 3 - 50
+    this.bgYRange = isAndroid ? -height / 3 - 15 : -height / 3 - 50
 
     this.bgY = interpolate(this.buttonOpacity, {
       inputRange: [0, 1],
@@ -99,14 +84,11 @@ class App extends React.Component {
       extrapolate: Extrapolate.CLAMP
     })
 
-    this.textInputOpacity = interpolate(
-      this.buttonOpacity,
-      {
-        inputRange: [0, 1],
-        outputRange: [1, 0],
-        extrapolate: Extrapolate.CLAMP
-      }
-    )
+    this.textInputOpacity = interpolate(this.buttonOpacity, {
+      inputRange: [0, 1],
+      outputRange: [1, 0],
+      extrapolate: Extrapolate.CLAMP
+    })
 
     this.rotateCross = interpolate(this.buttonOpacity, {
       inputRange: [0, 1],
@@ -127,10 +109,6 @@ class App extends React.Component {
           backgroundColor: 'white',
           justifyContent: 'flex-end'
         }}>
-        <StatusBar
-          translucent
-          backgroundColor={'transparent'}
-        />
         <Animated.View
           style={{
             ...StyleSheet.absoluteFill,
@@ -154,8 +132,7 @@ class App extends React.Component {
             height: height / 3,
             justifyContent: 'center'
           }}>
-          <TapGestureHandler
-            onHandlerStateChange={this.onStateChange}>
+          <TapGestureHandler onHandlerStateChange={this.onStateChange}>
             <Animated.View
               style={{
                 ...styles.button,
@@ -166,8 +143,7 @@ class App extends React.Component {
                   }
                 ]
               }}>
-              <Text
-                style={{fontSize: 20, fontWeight: 'bold'}}>
+              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
                 SIGN IN
               </Text>
             </Animated.View>
@@ -203,8 +179,7 @@ class App extends React.Component {
               top: null,
               justifyContent: 'center'
             }}>
-            <TapGestureHandler
-              onHandlerStateChange={this.onCloseState}>
+            <TapGestureHandler onHandlerStateChange={this.onCloseState}>
               <Animated.View style={styles.closeButton}>
                 <Animated.Text
                   style={{
@@ -212,10 +187,7 @@ class App extends React.Component {
                     fontWeight: 'bold',
                     transform: [
                       {
-                        rotate: concat(
-                          this.rotateCross,
-                          'deg'
-                        )
+                        rotate: concat(this.rotateCross, 'deg')
                       }
                     ]
                   }}>
@@ -233,8 +205,7 @@ class App extends React.Component {
               placeholderTextColor="black"
               style={styles.textInput}
             />
-            <TapGestureHandler
-              onHandlerStateChange={this.navigate}>
+            <TapGestureHandler onHandlerStateChange={this.navigate}>
               <Animated.View style={styles.button}>
                 <Text
                   style={{
