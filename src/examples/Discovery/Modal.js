@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, Dimensions} from 'react-native'
+import {View, Image, StyleSheet, Dimensions} from 'react-native'
 import Animated from 'react-native-reanimated'
 import {PanGestureHandler, State} from 'react-native-gesture-handler'
 const SCREEN_DIMENSIONS = Dimensions.get('window')
