@@ -7,6 +7,7 @@ import Home from '../examples/Home'
 import Login from '../examples/Login'
 import PanGesture from '../examples/PanGesture'
 import Pie from '../examples/D3/Pie'
+import Discovery from '../examples/Discovery'
 
 const AppNavigator = createStackNavigator(
   {
@@ -33,10 +34,16 @@ const AppNavigator = createStackNavigator(
       navigationOptions: {
         title: PageNames.Pie
       }
+    },
+    [PageNames.Discovery]: {
+      screen: Discovery,
+      navigationOptions: {
+        title: PageNames.Discovery
+      }
     }
   },
   {
-    initialRouteName: PageNames.Home
+    initialRouteName: PageNames.Discovery
   }
 )
 const App = createAppContainer(AppNavigator)

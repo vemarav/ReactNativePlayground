@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TextInput,
-  Platform
-} from 'react-native'
+import {View, Text, StyleSheet, Dimensions, TextInput} from 'react-native'
 import {runTiming} from './runTiming'
 import Animated from 'react-native-reanimated'
 import {TapGestureHandler, State} from 'react-native-gesture-handler'
@@ -117,7 +110,7 @@ class App extends React.Component {
               <Circle r={height + 50} cx={width / 2} />
             </ClipPath>
             <Image
-              href={require('../../assets/bg.jpg')}
+              href={require('../../assets/login/bg.jpg')}
               width={width}
               height={height + 50}
               preserveAspectRatio="xMidYMid slice"
