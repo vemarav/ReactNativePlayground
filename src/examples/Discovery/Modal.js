@@ -1,8 +1,7 @@
 import React from 'react'
-import {View, StatusBar, StyleSheet, Dimensions} from 'react-native'
+import {View, StyleSheet, Dimensions} from 'react-native'
 import Animated from 'react-native-reanimated'
 import {PanGestureHandler, State} from 'react-native-gesture-handler'
-import Video from 'react-native-video'
 const SCREEN_DIMENSIONS = Dimensions.get('window')
 
 const {
@@ -168,8 +167,8 @@ class Modal extends React.Component {
           onGestureEvent={onGestureEvent}
           onHandlerStateChange={onGestureEvent}>
           <Animated.View {...{style}}>
-            <Video
-              source={story.video}
+            <Image
+              source={story.image}
               muted
               repeat
               resizeMode={'cover'}
