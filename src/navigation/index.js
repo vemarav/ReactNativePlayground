@@ -43,7 +43,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: PageNames.Discovery
+    initialRouteName: PageNames.Home
   }
 )
 const App = createAppContainer(AppNavigator)
