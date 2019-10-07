@@ -1,7 +1,15 @@
 import React from 'react'
-import {View, Image, StyleSheet, Dimensions} from 'react-native'
+import {
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+  ActivityIndicator
+} from 'react-native'
 import Animated from 'react-native-reanimated'
 import {PanGestureHandler, State} from 'react-native-gesture-handler'
+import Video from 'react-native-video'
+
 const SCREEN_DIMENSIONS = Dimensions.get('window')
 
 const {
@@ -79,6 +87,13 @@ class Modal extends React.Component {
       ],
       {useNativeDriver: true}
     )
+    this.state = {isVideoLoaded: false}
+  }
+
+  videoLoaded = () => {
+    this.setState({
+      isVideoLoaded: true
+    })
   }
 
   render() {
@@ -167,13 +182,20 @@ class Modal extends React.Component {
           onGestureEvent={onGestureEvent}
           onHandlerStateChange={onGestureEvent}>
           <Animated.View {...{style}}>
-            <Image
-              source={story.image}
+            {this.state.isVideoLoaded ? null : (
+              <ActivityIndicator style={styles.indicator} />
+            )}
+            <Video
+              source={story.video}
               muted
               repeat
               resizeMode={'cover'}
               style={styles.modal}
+              onReadyForDisplay={this.videoLoaded}
             />
+            {this.state.isVideoLoaded ? null : (
+              <Image style={styles.modal} source={story.image} />
+            )}
           </Animated.View>
         </PanGestureHandler>
       </View>
@@ -191,6 +213,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     width: null,
     height: null
+  },
+  indicator: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 
